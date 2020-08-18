@@ -19,7 +19,7 @@ function App() {
 		}
 	};
 
-	const dateBuilder = d => {
+	const getDate = d => {
 		let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 		let date = String(new window.Date());
@@ -56,7 +56,7 @@ function App() {
 							<div className='location details'>
 								{weather.name}, {weather.sys.country}
 							</div>
-							<div className='date'>{dateBuilder(new Date())}</div>
+							<div className='date'>{getDate(new Date())}</div>
 						</div>
 						<div className='weather-box'>
 							<div className='wrap'>
@@ -81,6 +81,16 @@ function App() {
 
 							<div className='weather'>
 								{weather.weather[0].description}
+							</div>
+							<div className='weather'>
+								<img
+									src={
+										'http://openweathermap.org/img/wn/' +
+										weather.weather[0].icon +
+										'@2x.png'
+									}
+									alt='weather'
+								/>
 							</div>
 						</div>
 					</div>
