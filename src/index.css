@@ -5,67 +5,117 @@
 }
 
 body {
-	font-family: 'montseratt', sans-serif;
+	font-family: 'quicksand', sans-serif;
+}
+
+::placeholder {
+	color: rgba(255, 255, 255, 0.753);
+	font-family: 'quicksand', sans-serif;
+}
+
+::-webkit-input-placeholder,
+:-ms-input-placeholder {
+	/* Chrome/Opera/Safari */
+	color: rgba(255, 255, 255, 0.753);
+	font-family: 'quicksand', sans-serif;
 }
 
 .app {
-	background-image: url('./assets/cold-bg.jpg');
+	background: linear-gradient(
+			to bottom,
+			rgba(0, 0, 0, 0),
+			rgba(0, 0, 0, 0.486)
+		),
+		url('./img/cold.svg');
+
 	background-size: cover;
-	background-position: bottom;
-	transition: 0.4 ease;
+	background-position: top;
+	transition: 0.9s ease;
 }
 
 .app.warm {
-	background-image: url('./assets/warm-bg.jpg');
+	background: linear-gradient(
+			to bottom,
+			rgba(221, 15, 0, 0.397),
+			rgba(24, 0, 0, 0.384)
+		),
+		url('./img/hot.svg');
+	background-size: cover;
+	background-position: bottom;
+	transition: 0.9s ease;
 }
 
 main {
 	min-height: 100vh;
-	background-image: linear-gradient(
-		to bottom,
-		rgba(0, 0, 0, 0.2),
-		rgba(0, 0, 0, 0.75)
-	);
-	padding: 25px;
+	padding: 30px 10%;
 }
 
 .search-box {
 	width: 100%;
-	margin: 0 0 75px;
+	margin: 0 0 10%;
 }
 
 .search-box .search-bar {
 	display: block;
 	width: 100%;
-	padding: 15px;
+	padding: 20px;
 
 	appearance: none;
 	background: none;
 	border: none;
 	outline: none;
 
-	background-color: rgba(255, 255, 255, 0.5);
-	border-radius: 0px 0px 16px 16px;
-	margin-top: -25px;
+	background-color: rgba(255, 255, 255, 0.363);
+	border-radius: 50px;
 
-	box-shadow: 0px 5px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: inset 0 0 10px #0000008e;
+	-webkit-box-shadow: inset 0 0 10px #0000008e;
+	box-shadow: inset 0 0 10px #0000008e;
 
-	color: #313131;
+	color: #ffffff;
 	font-size: 20px;
 
-	transition: 0.4s ease;
+	transition: 0.5s ease;
 }
 
 .search-box .search-bar:focus {
-	background-color: rgba(255, 255, 255, 0.75);
+	background-color: rgba(255, 255, 255, 0.562);
+}
+
+.wrap {
+	display: block;
+}
+
+.details {
+	color: #fff;
+	text-align: center;
+	font-weight: 500;
+	text-shadow: 3px 3px rgba(59, 59, 59, 0.5);
+}
+
+.deg {
+	display: inline;
+	position: absolute;
+	top: 25px;
+	font-size: 50px;
 }
 
 .location-box .location {
 	color: #fff;
 	font-size: 32px;
-	font-weight: 500;
-	text-align: center;
-	text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+
+.feels-like {
+	font-size: 25px;
+	font-style: italic;
+	font-weight: 100;
+	margin-bottom: 20px;
+}
+
+.humidity {
+	font-size: 3em;
+	display: inline;
+	margin-left: 20px;
 }
 
 .location-box .date {
@@ -74,7 +124,7 @@ main {
 	font-weight: 300;
 	font-style: italic;
 	text-align: center;
-	text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+	text-shadow: 2px 2px rgba(53, 53, 53, 0.5);
 }
 
 .weather-box {
@@ -84,24 +134,18 @@ main {
 .weather-box .temp {
 	position: relative;
 	display: inline-block;
-	margin: 30px auto;
-	background-color: rgba(255, 255, 255, 0.2);
-	border-radius: 16px;
-
-	padding: 15px 25px;
 
 	color: #fff;
-	font-size: 102px;
-	font-weight: 900;
+	font-size: 7em;
+	font-weight: bold;
 
-	text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
+	text-shadow: 2px 5px rgba(54, 54, 54, 0.5);
 	text-align: center;
-	box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .weather-box .weather {
 	color: #fff;
-	font-size: 48px;
+	font-size: 2em;
 	font-weight: 700;
-	text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+	text-shadow: 2px 2px rgba(58, 58, 58, 0.5);
 }

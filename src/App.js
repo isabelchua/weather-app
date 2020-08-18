@@ -1,20 +1,92 @@
-import React from 'react';
+import React, { useState } from 'react';
 const api = {
 	key: '6c9c8105e788e82c964a04297291f9d6',
-	base: 'https://api.openweathermap.org/data/2.5'
+	base: 'https://api.openweathermap.org/data/2.5/'
 };
 
 function App() {
+	const [query, setQuery] = useState('daly city');
+	const [weather, setWeather] = useState({});
+
+	const search = e => {
+		if (e.key === 'Enter') {
+			fetch(`${api.base}weather?q=${query}&units=imperial&appid=${api.key}`)
+				.then(res => res.json())
+				.then(result => {
+					setWeather(result);
+					setQuery('');
+				});
+		}
+	};
+
+	const dateBuilder = d => {
+		let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+		let date = String(new window.Date());
+		date = date.slice(3, 15);
+		let day = days[d.getDay()];
+
+		return `${day} ${date}`;
+	};
+
 	return (
-		<div className='App'>
+		<div
+			className={
+				typeof weather.main != 'undefined'
+					? weather.main.temp > 70
+						? 'app warm'
+						: 'app'
+					: 'app'
+			}
+		>
 			<main>
 				<div className='search-box'>
 					<input
 						type='text'
 						className='search-bar'
-						placeholder='Search..'
+						placeholder='Search City..'
+						onChange={e => setQuery(e.target.value)}
+						onKeyPress={search}
+						spellCheck='false'
 					/>
 				</div>
+				{typeof weather.main != 'undefined' ? (
+					<div>
+						<div className='location-box'>
+							<div className='location details'>
+								{weather.name}, {weather.sys.country}
+							</div>
+							<div className='date'>{dateBuilder(new Date())}</div>
+						</div>
+						<div className='weather-box'>
+							<div className='wrap'>
+								<div className='temp'>
+									{Math.round(weather.main.temp)}
+									<div className='deg'>°</div>
+								</div>
+
+								<div className='humidity details'>
+									{weather.main.humidity}%
+								</div>
+							</div>
+							<div className='location-box'>
+								<div className='feels-like details'>
+									feels like {Math.round(weather.main.feels_like)}°
+								</div>
+
+								{/* <div className='location details'>
+									Wind Speed: {Math.round(weather.wind.speed)}mph
+								</div> */}
+							</div>
+
+							<div className='weather'>
+								{weather.weather[0].description}
+							</div>
+						</div>
+					</div>
+				) : (
+					''
+				)}
 			</main>
 		</div>
 	);
