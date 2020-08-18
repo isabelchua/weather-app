@@ -5,16 +5,29 @@ const api = {
 };
 
 function App() {
-	const [query, setQuery] = useState('daly city');
+	const [query, setQuery] = useState('');
 	const [weather, setWeather] = useState({});
+	const [msg, setMsg] = useState('');
 
 	const search = e => {
 		if (e.key === 'Enter') {
 			fetch(`${api.base}weather?q=${query}&units=imperial&appid=${api.key}`)
-				.then(res => res.json())
+				.then(res => {
+					if (!res.ok) {
+						setMsg("can't find city");
+					} else {
+						setMsg('');
+					}
+					//console.log('cant find city');
+
+					return res.json();
+				})
 				.then(result => {
 					setWeather(result);
 					setQuery('');
+				})
+				.catch(err => {
+					console.log(err);
 				});
 		}
 	};
@@ -49,7 +62,9 @@ function App() {
 						onKeyPress={search}
 						spellCheck='false'
 					/>
+					<div className='details'>{msg}</div>
 				</div>
+
 				{typeof weather.main != 'undefined' ? (
 					<div>
 						<div className='location-box'>
