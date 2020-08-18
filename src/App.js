@@ -39,7 +39,7 @@ function App() {
 		date = date.slice(3, 15);
 		let day = days[d.getDay()];
 
-		return `${day} ${date}`;
+		return `${day}, ${date}`;
 	};
 
 	return (
